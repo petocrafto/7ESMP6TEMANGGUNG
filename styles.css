@@ -1,0 +1,282 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #121212; /* Warna latar belakang gelap */
+    color: #f5f5f5; /* Warna teks terang */
+}
+
+/* Header */
+header {
+    background-color: #1f1f1f; /* Warna latar header gelap */
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header .logo h1 {
+    font-size: 24px;
+}
+
+header .menu-toggle {
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+header .menu-toggle:hover {
+    color: #ffeb3b;
+}
+
+/* Side Navigation Bar */
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1001;
+    top: 0;
+    right: 0;
+    background-color: #333; /* Warna latar belakang navbar gelap */
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 22px;
+    color: white;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    background-color: #575757;
+    color: #ffeb3b;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 10px;
+    left: 25px;
+    font-size: 36px;
+}
+
+/* Overlay */
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+/* Hero Section */
+#hero {
+    background: url('gallery/hero-image.jpg') no-repeat center center/cover;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+}
+
+#hero h2 {
+    font-size: 48px;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+#hero p {
+    font-size: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* About Section */
+#about {
+    padding: 40px 20px;
+    text-align: center;
+    background-color: #1e1e1e; /* Warna latar belakang section lebih gelap */
+}
+
+#about h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+/* Struktur Kelas Section */
+.structure {
+    padding: 60px 20px;
+    text-align: center;
+    background-color: #1e1e1e;
+    color: white;
+}
+
+.structure h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.structure p {
+    font-size: 18px;
+    margin-bottom: 40px;
+}
+
+.class-structure {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.member {
+    background-color: #2a2a2a;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.member h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #ffeb3b;
+}
+
+.member p {
+    font-size: 16px;
+    color: #f5f5f5;
+    margin-bottom: 10px;
+}
+
+.member:hover {
+    transform: scale(1.05);
+}
+/* Assignments/News Section */
+#assignments {
+    padding: 40px 20px;
+    background-color: #1e1e1e; /* Warna latar belakang gelap */
+    text-align: center;
+}
+
+#assignments h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #ffeb3b; /* Warna judul */
+}
+
+/* Card Container */
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Card Styling */
+.card {
+    background-color: #333; /* Warna latar kartu */
+    border-radius: 10px;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-10px); /* Animasi hover */
+}
+
+.card h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #ffeb3b; /* Warna judul kartu */
+}
+
+.card p {
+    font-size: 16px;
+    color: #f5f5f5; /* Warna teks dalam kartu */
+}
+
+/* Gallery Section */
+#gallery {
+    padding: 40px 20px;
+    background-color: #1e1e1e; /* Galeri dengan latar lebih gelap */
+    text-align: center;
+}
+
+#gallery h2 {
+    font-size: 36px;
+    margin-bottom: 30px;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.gallery-item {
+    position: relative;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    transition: transform 0.3s;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+/* Contact Section */
+#contact {
+    padding: 40px 20px;
+    text-align: center;
+    background-color: #1e1e1e; /* Kontak dengan latar lebih gelap */
+}
+
+#contact h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.contact-info {
+    font-size: 18px;
+}
+
+.contact-info i {
+    margin-right: 10px;
+}
+
+/* Footer */
+footer {
+    background-color: #1f1f1f;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+}
+
+footer i {
+    color: red;
+}
