@@ -1,52 +1,67 @@
 function openNav() {
-    document.getElementById("sideNav").style.width = "250px";
-    document.getElementById("overlay").style.display = "block";
-    setTimeout(() => {
-        document.getElementById("overlay").style.opacity = "1";
-    }, 10); // Delay to trigger opacity transition
+  document.getElementById("sideNav").style.width = "250px";
+  document.getElementById("overlay").style.display = "block";
+  setTimeout(() => {
+    document.getElementById("overlay").style.opacity = "1";
+  }, 10); // Delay to trigger opacity transition
 }
 
 function closeNav() {
-    document.getElementById("sideNav").style.width = "0";
-    document.getElementById("overlay").style.opacity = "0";
-    setTimeout(() => {
-        document.getElementById("overlay").style.display = "none";
-    }, 500); // Match the transition time for the opacity
+  document.getElementById("sideNav").style.width = "0";
+  document.getElementById("overlay").style.opacity = "0";
+  setTimeout(() => {
+    document.getElementById("overlay").style.display = "none";
+  }, 500); // Match the transition time for the opacity
 }
 
-// Navbar Toggle
-const hamburger = document.querySelector('.hamburger');
-const navLinks = document.querySelector('.nav-links');
-const overlay = document.getElementById('overlay');
+// Hamburger Menu
+const hamburger = document.querySelector(".hamburger");
+const navLinks = document.querySelector(".nav-links");
+const links = document.querySelectorAll(".nav-links li");
+const overlay = document.getElementById("overlay");
 
-hamburger.addEventListener('click', () => {
-  hamburger.classList.toggle('active');
-  navLinks.classList.toggle('active');
-  overlay.style.display = overlay.style.display === 'block' ? 'none' : 'block';
-});
-
-// Close navbar when clicking on overlay
-overlay.addEventListener('click', () => {
-  hamburger.classList.remove('active');
-  navLinks.classList.remove('active');
-  overlay.style.display = 'none';
-});
-
-// Close navbar when clicking on a link
-document.querySelectorAll('.nav-links a').forEach(link => {
-  link.addEventListener('click', () => {
-    hamburger.classList.remove('active');
-    navLinks.classList.remove('active');
-    overlay.style.display = 'none';
+hamburger.addEventListener("click", () => {
+  navLinks.classList.toggle("open");
+  links.forEach((link) => {
+    link.classList.toggle("fade");
   });
+  overlay.style.display = overlay.style.display === "block" ? "none" : "block";
 });
 
-// Smooth scroll for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
+function closeNav() {
+  navLinks.classList.remove("open");
+  links.forEach((link) => {
+    link.classList.remove("fade");
+  });
+  overlay.style.display = "none";
+}
+
+// Smooth Scroll dengan offset
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  anchor.addEventListener("click", function (e) {
     e.preventDefault();
-    document.querySelector(this.getAttribute('href')).scrollIntoView({
-      behavior: 'smooth'
-    });
+
+    const targetId = this.getAttribute("href");
+    const targetElement = document.querySelector(targetId);
+    const navbarHeight = document.querySelector(".navbar").offsetHeight;
+
+    if (targetElement) {
+      const targetPosition = targetElement.offsetTop - navbarHeight;
+      window.scrollTo({
+        top: targetPosition,
+        behavior: "smooth",
+      });
+      closeNav();
+    }
   });
+});
+
+// Navbar Scroll Effect
+const navbar = document.querySelector(".navbar");
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 50) {
+    navbar.classList.add("scrolled");
+  } else {
+    navbar.classList.remove("scrolled");
+  }
 });
