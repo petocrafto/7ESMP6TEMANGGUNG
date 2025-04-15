@@ -14,45 +14,53 @@ function closeNav() {
   }, 500); // Match the transition time for the opacity
 }
 
-// Hamburger Menu
+// Navbar Toggle
 const hamburger = document.querySelector(".hamburger");
 const navLinks = document.querySelector(".nav-links");
-const links = document.querySelectorAll(".nav-links li");
 const overlay = document.getElementById("overlay");
 
 hamburger.addEventListener("click", () => {
-  navLinks.classList.toggle("open");
-  links.forEach((link) => {
-    link.classList.toggle("fade");
-  });
+  hamburger.classList.toggle("active");
+  navLinks.classList.toggle("active");
   overlay.style.display = overlay.style.display === "block" ? "none" : "block";
+  if (overlay.style.display === "block") {
+    setTimeout(() => {
+      overlay.style.opacity = "1";
+    }, 10);
+  } else {
+    overlay.style.opacity = "0";
+  }
 });
 
-function closeNav() {
-  navLinks.classList.remove("open");
-  links.forEach((link) => {
-    link.classList.remove("fade");
-  });
-  overlay.style.display = "none";
-}
+// Close navbar when clicking on overlay
+overlay.addEventListener("click", () => {
+  hamburger.classList.remove("active");
+  navLinks.classList.remove("active");
+  overlay.style.opacity = "0";
+  setTimeout(() => {
+    overlay.style.display = "none";
+  }, 300);
+});
 
-// Smooth Scroll dengan offset
+// Close navbar when clicking on a link
+document.querySelectorAll(".nav-links a").forEach((link) => {
+  link.addEventListener("click", () => {
+    hamburger.classList.remove("active");
+    navLinks.classList.remove("active");
+    overlay.style.opacity = "0";
+    setTimeout(() => {
+      overlay.style.display = "none";
+    }, 300);
+  });
+});
+
+// Smooth scroll for navigation links
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   anchor.addEventListener("click", function (e) {
     e.preventDefault();
-
-    const targetId = this.getAttribute("href");
-    const targetElement = document.querySelector(targetId);
-    const navbarHeight = document.querySelector(".navbar").offsetHeight;
-
-    if (targetElement) {
-      const targetPosition = targetElement.offsetTop - navbarHeight;
-      window.scrollTo({
-        top: targetPosition,
-        behavior: "smooth",
-      });
-      closeNav();
-    }
+    document.querySelector(this.getAttribute("href")).scrollIntoView({
+      behavior: "smooth",
+    });
   });
 });
 

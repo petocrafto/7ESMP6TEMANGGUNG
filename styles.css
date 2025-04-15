@@ -86,6 +86,8 @@ header .menu-toggle:hover {
   background: rgba(0, 0, 0, 0.7);
   z-index: 999;
   display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 /* Hero Section */
@@ -685,6 +687,7 @@ footer i {
   display: none;
   flex-direction: column;
   cursor: pointer;
+  padding: 5px;
 }
 
 .hamburger span {
